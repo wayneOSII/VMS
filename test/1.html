@@ -1,0 +1,43 @@
+<div class="navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav>
+    <div>
+      <ul>
+        <li><a href="#" data-target="page1.html">頁面1</a></li>
+        <li><a href="#" data-target="page2.html">頁面2</a></li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-target="attend.html">值勤簽到</a>
+          </li>
+      </ul>
+    </div>
+    </nav>
+    
+    
+    <div>
+    <iframe id="content" name="content" src=""></iframe>
+    </div>
+    <script>
+      const links = document.querySelectorAll('nav a');
+      const iframe = document.querySelector('#content');
+      links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const target = event.target.dataset.target;
+          iframe.src = target;
+        });
+      });
+    </script>
+  </body>
+</html>
