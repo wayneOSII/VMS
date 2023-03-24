@@ -1,3 +1,27 @@
+<?php
+	session_start();
+	require_once("./backend/connect_db.php");
+  $ad_no = $_SESSION['ad_no'];
+  $ad_id = $_SESSION['ad_id'];
+  print($ad_no);
+  print($ad_id);
+	$sql = 'SELECT ad_name FROM admin WHERE ad_no = :ad_no';
+	$sth = $db_link->prepare($sql);
+  $sth->bindValue(':ad_no',$ad_no);
+  // $sth->bindValue(':ad_id',$ad_id);
+	$sth->execute();
+  $userData = $sth->fetch(PDO::FETCH_ASSOC);
+	foreach($userData as $result){
+    echo $result;
+  }
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,7 +36,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#" >Student Portal</a>
+      <a class="navbar-brand" href="#" data-target="index.html">Student Portal</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,12 +69,13 @@
         </ul>
       </div>
       <div class="navbar-right">
-        <a href='log_in.html' class="btn btn-default navbar-btn">Login</a>
-        <a href="help.html" class="btn btn-default navbar-btn">Help</a>
+        <form action="./backend/log_out.php" method="POST" id="myform">
+        <a href="#" class="btn btn-default navbar-btn"><?=$result?></a>
+        <a href="help.html" class="btn btn-default navbar-btn" onclick="document.getElementById('myform').submit()">Logout</a>
+        </form>
       </div>
     </nav>
-    <a href='log_in.html' class="btn btn-default navbar-btn">Login</a>
-    <a href="help.html" class="btn btn-default navbar-btn">Help</a>
+
 <!-- 將 iframe 嵌入到這個 div 容器中 -->
 <div id="attend-container">
     <iframe id="attend-iframe" name="attend-iframe" src="" frameborder="0" width="100%" height="500" style="display: none"></iframe>

@@ -11,11 +11,11 @@ function showLoginForm() {
   
   function login() {
     var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    // var password = document.getElementById("password").value;
     var identity = document.getElementById("identity").value;
   
     // Here you can add code to verify the username, password, and identity
     // For this example, we'll just display an alert with the entered values
-    alert("Username: " + username + "\nPassword: " + password + "\nIdentity: " + identity);
+    // alert("Username: " + username + "\nIdentity: " + identity);
   }
   

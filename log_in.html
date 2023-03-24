@@ -8,20 +8,20 @@
   <body>
     <div class="login-box">
       <h2>Login</h2>
-      <form>
+      <form action="./backend/log_in.php" method="post">
         <label for="identity">Identity:</label>
         <select id="identity" name="identity" onchange="showLoginForm()">
-          <option value="">Select Identity</option>
-          <option value="admin">Admin</option>
-          <option value="teacher">Teacher</option>
-          <option value="student">Student</option>
+          <option name="identify">Select Identity</option>
+          <option value="admin" name="admin">Admin</option>
+          <option value="teacher" name="teacher">Teacher</option>
+          <option value="student" name="student">Student</option>
         </select>
         <div id="login-form" style="display:none">
           <label for="username">Username:</label>
-          <input type="text" id="username" name="username">
+          <input type="text" id="username" name="account">
           <label for="password">Password:</label>
-          <input type="password" id="password" name="password">
-          <button type="button" onclick="login()">Login</button>
+          <input type="password" id="password" name="pwd">
+          <button type="submit" >Login</button>
         </div>
       </form>
     </div>
