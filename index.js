@@ -74,7 +74,7 @@ $(document).ready(function(){
   });
 
 
-const links = document.querySelectorAll('nav a');
+const links = document.querySelectorAll('#attend_btn');
       const iframe = document.querySelector('#attend-iframe');
       links.forEach((link) => {
         link.addEventListener('click', (event) => {
@@ -91,3 +91,19 @@ $(document).ready(function(){
 });
 
  
+
+// 偵測網頁上的Login按鈕
+var loginBtn = document.querySelector("#loginbtn");
+loginBtn.addEventListener("click", function() {
+  // 轉跳至log_in.html頁面
+  window.location.href = "log_in.html";
+});
+
+// 偵測網頁上的Help按鈕
+var helpBtn = document.querySelector("#helpbtn");
+helpBtn.addEventListener("click", function() {
+  // 轉跳至help.html頁面
+  window.location.href = "help.html";
+});
+
+

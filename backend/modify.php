@@ -15,7 +15,7 @@ print("您輸入的會員名稱為：".$ad_name."<br>");
 require_once("connect_db.php");
 
 $userData = [$account, password_hash($pwd, PASSWORD_DEFAULT), $ad_name];
-$sql = 'INSERT INTO teacher(t_id,t_pwd,t_name) VALUES (?,?,?)';
+$sql = 'INSERT INTO student(s_id,s_pwd,s_name) VALUES (?,?,?)';
 $sth = $db_link->prepare($sql);
 try{
     if($sth->execute($userData)) {

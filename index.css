@@ -1,4 +1,13 @@
 .card-header {
     font-weight: bold;
   }
+
+  #navrbt {
+    width: auto;
+    height: 25px; 
+  }
   
+  #rbt{
+    text-align: center;
+    padding: 5px;
+  }

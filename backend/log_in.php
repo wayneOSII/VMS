@@ -25,6 +25,8 @@ switch ($identity) {
                 if(password_verify($pwd,$userData['ad_pwd'])){
                     $_SESSION['ad_no'] = $userData['ad_no'];
                     $_SESSION['ad_id'] = $userData["ad_id"];
+                    $_SESSION['ad_name'] = $userData["ad_name"];
+
                     echo "
                     <script>
                         alert('登入成功');
@@ -57,7 +59,7 @@ switch ($identity) {
         }
         break;
     case 'teacher':
-        $sql2 = 'SELECT t_no,t_id,t_pwd,t_name FROM admin WHERE t_id = :account';
+        $sql2 = 'SELECT t_no,t_id,t_pwd,t_name FROM teacher WHERE t_id = :account';
         $sth = $db_link->prepare($sql2);
         $sth->bindValue(':account',$account);
         $sth->execute();
@@ -70,6 +72,7 @@ switch ($identity) {
                 if(password_verify($pwd,$userData['t_pwd'])){
                     $_SESSION['t_no'] = $userData['t_no'];
                     $_SESSION['t_id'] = $userData["t_id"];
+                    $_SESSION['t_name'] = $userData["t_name"];
                     echo "
                     <script>
                         alert('登入成功');
@@ -102,7 +105,7 @@ switch ($identity) {
         }
         break;
     case 'student':
-        $sql3 = 'SELECT s_no,s_id,s_pwd,s_name FROM admin WHERE s_id = :account';
+        $sql3 = 'SELECT s_no,s_id,s_pwd,s_name FROM student WHERE s_id = :account';
         $sth = $db_link->prepare($sql3);
         $sth->bindValue(':account',$account);
         $sth->execute();
@@ -115,6 +118,7 @@ switch ($identity) {
                 if(password_verify($pwd,$userData['s_pwd'])){
                     $_SESSION['s_no'] = $userData['s_no'];
                     $_SESSION['s_id'] = $userData["s_id"];
+                    $_SESSION['s_name'] = $userData["s_name"];
                     echo "
                     <script>
                         alert('登入成功');
