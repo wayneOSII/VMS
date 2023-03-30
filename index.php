@@ -92,7 +92,7 @@
             <a class="nav-link" href="#">請假申請</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">志工時段預選</a>
+            <a class="nav-link" href="./reserve.php">志工時段預選</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">缺曠查詢</a>
