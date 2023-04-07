@@ -62,34 +62,29 @@ date_default_timezone_set('Asia/Taipei');
 // 取得當前年份和月份
 $year = date("Y");
 $month = date("n");
-//今天日期
-$today = date("Y-m-d");
-echo $today,'<br>';
-$today_date = date_create($today); // 將今天日期轉換為 DateTime 物件
 
 
 $prev_month = $month - 1;
 if ($prev_month == 0) {
     $prev_month = 12;
-    // $year--;
+    $year--;
 }
 
 // 取得下一個月份
 $next_month = $month + 1;
 if ($next_month == 13) {
     $next_month = 1;
-    // $year++;
+    $year++;
 }
-
 
 
 if (isset($_POST['mon'])){
     $changedmonth = $_POST['mon'];
 	// $month = date("n");
-	echo $changedmonth;
-	if($month == 12 && $changedmonth == 1){
+	if($month < $changedmonth){
+		echo $changedmonth;
 		echo '
-			<form method="post" action="reserve.php" id="month-form">
+			<form method="post" action="2.php" id="month-form">
 				<div class="choice">
 					<select name="mon" onchange="submitMonth()">
 						<option value="'.$prev_month.'">'.$prev_month.'月</option>
@@ -98,20 +93,10 @@ if (isset($_POST['mon'])){
 					</select>
 				</div>
 			</form>';
-	}elseif($month == 1 && $changedmonth == 12){
-		echo '
-			<form method="post" action="reserve.php" id="month-form">
-				<div class="choice">
-					<select name="mon" onchange="submitMonth()">
-						<option value="'.$changedmonth.'" selected>'.$prev_month.'月</option>
-						<option value="'.$month.'">'.$month.'月</option>
-						<option value="'.$next_month.'">'.$next_month.'月</option>
-					</select>
-				</div>
-			</form>';
 	}elseif($month > $changedmonth){
+		echo $changedmonth;
 		echo '
-			<form method="post" action="reserve.php" id="month-form">
+			<form method="post" action="2.php" id="month-form">
 				<div class="choice">
 					<select name="mon" onchange="submitMonth()">
 						<option value="'.$changedmonth.'" selected>'.$prev_month.'月</option>
@@ -120,20 +105,10 @@ if (isset($_POST['mon'])){
 					</select>
 				</div>
 			</form>';
-	}elseif($month < $changedmonth){
-		echo '
-		<form method="post" action="reserve.php" id="month-form">
-			<div class="choice">
-				<select name="mon" onchange="submitMonth()">
-					<option value="'.$prev_month.'">'.$prev_month.'月</option>
-					<option value="'.$month.'">'.$month.'月</option>
-					<option value="'.$changedmonth.'" selected>'.$next_month.'月</option>
-				</select>
-			</div>
-		</form>';
 	}else{
+		echo $changedmonth;
 		echo '
-			<form method="post" action="reserve.php" id="month-form">
+			<form method="post" action="2.php" id="month-form">
 				<div class="choice">
 					<select name="mon" onchange="submitMonth()">
 						<option value="'.$prev_month.'">'.$prev_month.'月</option>
@@ -143,37 +118,25 @@ if (isset($_POST['mon'])){
 				</div>
 			</form>';
 	}
-	echo "now ",$month;
-	echo "changed ",$changedmonth, ' ';
-	if($month == 12 && $changedmonth == 1){
-		$changedyear = $year + 1;
-	}elseif($month == 1 && $changedmonth == 12){
-		$changedyear = $year - 1;
-	}elseif($month == 12 && $changedmonth == 12){
-		$changedyear = $year;
-	}elseif($month == 1 && $changedmonth == 1){
-		$changedyear = $year;
-	}else{
-		$changedyear = $year;
-	}
-	echo $year , " ";
-	echo $changedyear , " ";
+
+
+
 
     // 取得當前月份的第一天是星期幾
-    $firstDayOfWeek = date("N", mktime(0, 0, 0, $changedmonth, 1, $changedyear));
-    echo "fD",$firstDayOfWeek;
+    $firstDayOfWeek = date("N", mktime(0, 0, 0, $changedmonth, 1, $year));
+    echo $firstDayOfWeek;
     // 取得當前月份的天數
-    $daysInMonth = date("t", mktime(0, 0, 0, $changedmonth, 1, $changedyear));
+    $daysInMonth = date("t", mktime(0, 0, 0, $changedmonth, 1, $year));
 
     // 輸出 HTML 表格開始標籤和表頭行
     echo "<table>";
-    echo "<tr><th colspan=\"6\">" . $changedyear."年".$changedmonth."月" . "</th></tr>";
+    echo "<tr><th colspan=\"6\">" . $year."年".$changedmonth."月" . "</th></tr>";
     echo "<tr><th></th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th></tr>";
 
     // 計算需要輸出的行數
     $rows = ceil(($daysInMonth + $firstDayOfWeek - 1) / 7);
 
-    echo "rows:",$rows;
+    echo $rows;
 
     //這個月的第一天不是星期一到星期五的話刪除第一列
     if ($firstDayOfWeek > 5) {
@@ -193,9 +156,9 @@ if (isset($_POST['mon'])){
             if ($day < 1 || $day > $daysInMonth) {
     			echo "<th></th>";
     			} else {
-    				$date = date_create("$changedyear-$changedmonth-$day");
-    				$formattedDate = date_format($date, "Y/m/d (D)");
-    				echo "<th>$formattedDate</th>";
+    			$date = date_create("$year-$changedmonth-$day");
+    			$formattedDate = date_format($date, "m/d (D)");
+    			echo "<th>$formattedDate</th>";
                     
     			}
         }
@@ -214,21 +177,23 @@ if (isset($_POST['mon'])){
             if ($day < 1 || $day > $daysInMonth) {
     			echo "<td></td>";
     			} else {
-    				$date = date_create("$changedyear-$changedmonth-$day");
-    				$formattedDate = date_format($date, "Y-m-d");
-					$formattedDateObj = date_create($formattedDate); // 將預約日期轉換為 DateTime 物件
-    				echo "<td>";
-					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
-    				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=12:30-13:25\">預約</a>";
-    				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
-    						<input type="hidden" name="time" value="12:30-13:25">
-    						<button type="submit" onclick="submitForms()">預約</button>
-    			  		 </form>';
-					}else{// 如果預約日期在今天之前
-						echo '<button disabled>已過期</button>';
-					}
-    				echo "</td>";
+    			$date = date_create("$year-$changedmonth-$day");
+    			$formattedDate = date_format($date, "m/d (D)");
+    			//將迴圈取得的日期格式做轉換
+    			$dateObj = DateTime::createFromFormat('m/d (D)', $formattedDate);
+    			$formattedData = $dateObj->format('Y-m-d');
+    			// echo "<td></td>";
+    			echo "<td>";
+    			// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=12:30-13:25\">預約</a>";
+    			echo '<form action="./backend/get_data.php" method="POST">
+    					<input type="hidden" name="date" value=" '.$formattedData.'">
+    					<input type="hidden" name="time" value="12:30-13:25">
+    					<button type="submit">預約</button>
+    		  		 </form>';
+    			// if ($col == 1 && $row % 2 == 0) {
+    			//     echo "Text";
+    			// }
+    			echo "</td>";
     			}
         }
 
@@ -246,38 +211,34 @@ if (isset($_POST['mon'])){
             if ($day < 1 || $day > $daysInMonth) {
     			echo "<td></td>";
     			} else {
-    				$date = date_create("$changedyear-$changedmonth-$day");
-    				$formattedDate = date_format($date, "Y-m-d");
-					$formattedDateObj = date_create($formattedDate); // 將預約日期轉換為 DateTime 物件
-    				echo "<td>";
-					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
-    				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=15:30-17:30\">預約</a>";
-    				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
-    						<input type="hidden" name="time" value="15:30-17:30">
-    						<button type="submit" onclick="submitForms()">預約</button>
-    			  		 </form>';
-					}else{// 如果預約日期在今天之前
-						echo '<button disabled>已過期</button>';
-					}
-    				echo "</td>";
+    			$date = date_create("$year-$changedmonth-$day");
+    			$formattedDate = date_format($date, "m/d (D)");
+    			//將迴圈取得的日期格式做轉換
+    			$dateObj = DateTime::createFromFormat('m/d (D)', $formattedDate);
+    			$formattedData = $dateObj->format('Y-m-d');
+    			echo "<td>";
+    			// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=15:30-17:30\">預約</a>";
+    			echo '<form action="./backend/get_data.php" method="POST">
+    					<input type="hidden" name="date" value=" '.$formattedData.'">
+    					<input type="hidden" name="time" value="15:30-17:30">
+    					<button type="submit">預約</button>
+    		  		 </form>';
+    			echo "</td>";
     			}
-    	}
+    		}
     	// echo "<tr>";
     	// echo "<td> </td>";
     	echo "</tr>";
-
 
     }
 
     // 輸出 HTML 表格結束標籤
     echo "</table>";
-	unset($changedmonth);
 }else{
 
 
     echo '
-	<form method="post" action="reserve.php" id="month-form">
+	<form method="post" action="2.php" id="month-form">
 		<div class="choice">
 			<select name="mon" onchange="submitMonth()">
 				<option value="'.$prev_month.'">'.$prev_month.'月</option>
@@ -307,9 +268,9 @@ if (isset($_POST['mon'])){
     //這個月的第一天不是星期一到星期五的話刪除第一列
     if ($firstDayOfWeek > 5) {
     	$row = 2;
-    	}else{
+    	 }else{
     		$row = 1;
-    	}
+    	 }
 
     // 輸出每一行的日期
     //日期欄位
@@ -323,7 +284,7 @@ if (isset($_POST['mon'])){
     			echo "<th></th>";
     			} else {
     			$date = date_create("$year-$month-$day");
-    			$formattedDate = date_format($date, "Y/m/d (D)");
+    			$formattedDate = date_format($date, "m/d (D)");
     			echo "<th>$formattedDate</th>";
                     
     			}
@@ -343,22 +304,23 @@ if (isset($_POST['mon'])){
             if ($day < 1 || $day > $daysInMonth) {
     			echo "<td></td>";
     			} else {
-    				$date = date_create("$year-$month-$day");
-    				$formattedDate = date_format($date, "Y-m-d");
-					$formattedDateObj = date_create($formattedDate); // 將預約日期轉換為 DateTime 物件
-    				// echo "<td></td>";
-    				echo "<td>";
-					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
-    				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=12:30-13:25\">預約</a>";
-    				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
-    						<input type="hidden" name="time" value="12:30-13:25">
-    						<button type="submit" onclick="submitForms()">預約</button>
-    		  			 </form>';
-					}else{// 如果預約日期在今天之前
-						echo '<button disabled>已過期</button>';
-					}
-    				echo "</td>";
+    			$date = date_create("$year-$month-$day");
+    			$formattedDate = date_format($date, "m/d (D)");
+    			//將迴圈取得的日期格式做轉換
+    			$dateObj = DateTime::createFromFormat('m/d (D)', $formattedDate);
+    			$formattedData = $dateObj->format('Y-m-d');
+    			// echo "<td></td>";
+    			echo "<td>";
+    			// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=12:30-13:25\">預約</a>";
+    			echo '<form action="./backend/get_data.php" method="POST">
+    					<input type="hidden" name="date" value=" '.$formattedData.'">
+    					<input type="hidden" name="time" value="12:30-13:25">
+    					<button type="submit">預約</button>
+    		  		 </form>';
+    			// if ($col == 1 && $row % 2 == 0) {
+    			//     echo "Text";
+    			// }
+    			echo "</td>";
     			}
         }
 
@@ -376,21 +338,19 @@ if (isset($_POST['mon'])){
             if ($day < 1 || $day > $daysInMonth) {
     			echo "<td></td>";
     			} else {
-    				$date = date_create("$year-$month-$day");
-    				$formattedDate = date_format($date, "Y-m-d");
-					$formattedDateObj = date_create($formattedDate); // 將預約日期轉換為 DateTime 物件
-    				echo "<td>";
-					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
-    				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=15:30-17:30\">預約</a>";
-    				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
-    						<input type="hidden" name="time" value="15:30-17:30">
-    						<button type="submit" onclick="submitForms()">預約</button>
-    		  			 </form>';
-					}else{// 如果預約日期在今天之前
-						echo '<button disabled>已過期</button>';
-					}
-    				echo "</td>";
+    			$date = date_create("$year-$month-$day");
+    			$formattedDate = date_format($date, "m/d (D)");
+    			//將迴圈取得的日期格式做轉換
+    			$dateObj = DateTime::createFromFormat('m/d (D)', $formattedDate);
+    			$formattedData = $dateObj->format('Y-m-d');
+    			echo "<td>";
+    			// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=15:30-17:30\">預約</a>";
+    			echo '<form action="./backend/get_data.php" method="POST">
+    					<input type="hidden" name="date" value=" '.$formattedData.'">
+    					<input type="hidden" name="time" value="15:30-17:30">
+    					<button type="submit">預約</button>
+    		  		 </form>';
+    			echo "</td>";
     			}
     		}
     	// echo "<tr>";

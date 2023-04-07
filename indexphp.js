@@ -42,7 +42,7 @@ logoutBtn.addEventListener('click', (event) => {
   .then((data) => {
     // 根據回應中的內容執行不同的操作
     if (data.success) {
-      window.location.replace('./index.html');
+      window.location.replace('./index.php');
       alert(data.message);
     } else {
       alert(data.message);

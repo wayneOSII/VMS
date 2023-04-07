@@ -83,67 +83,36 @@ if ($next_month == 13) {
 
 
 
+
 if (isset($_POST['mon'])){
     $changedmonth = $_POST['mon'];
 	// $month = date("n");
 	echo $changedmonth;
-	if($month == 12 && $changedmonth == 1){
-		echo '
-			<form method="post" action="reserve.php" id="month-form">
-				<div class="choice">
-					<select name="mon" onchange="submitMonth()">
-						<option value="'.$prev_month.'">'.$prev_month.'月</option>
-						<option value="'.$month.'">'.$month.'月</option>
-						<option value="'.$changedmonth.'" selected>'.$next_month.'月</option>
-					</select>
-				</div>
-			</form>';
-	}elseif($month == 1 && $changedmonth == 12){
-		echo '
-			<form method="post" action="reserve.php" id="month-form">
-				<div class="choice">
-					<select name="mon" onchange="submitMonth()">
-						<option value="'.$changedmonth.'" selected>'.$prev_month.'月</option>
-						<option value="'.$month.'">'.$month.'月</option>
-						<option value="'.$next_month.'">'.$next_month.'月</option>
-					</select>
-				</div>
-			</form>';
-	}elseif($month > $changedmonth){
-		echo '
-			<form method="post" action="reserve.php" id="month-form">
-				<div class="choice">
-					<select name="mon" onchange="submitMonth()">
-						<option value="'.$changedmonth.'" selected>'.$prev_month.'月</option>
-						<option value="'.$month.'">'.$month.'月</option>
-						<option value="'.$next_month.'">'.$next_month.'月</option>
-					</select>
-				</div>
-			</form>';
-	}elseif($month < $changedmonth){
-		echo '
-		<form method="post" action="reserve.php" id="month-form">
-			<div class="choice">
-				<select name="mon" onchange="submitMonth()">
-					<option value="'.$prev_month.'">'.$prev_month.'月</option>
-					<option value="'.$month.'">'.$month.'月</option>
-					<option value="'.$changedmonth.'" selected>'.$next_month.'月</option>
-				</select>
-			</div>
-		</form>';
-	}else{
-		echo '
-			<form method="post" action="reserve.php" id="month-form">
-				<div class="choice">
-					<select name="mon" onchange="submitMonth()">
-						<option value="'.$prev_month.'">'.$prev_month.'月</option>
-						<option value="'.$month.'" selected>'.$month.'月</option>
-						<option value="'.$next_month.'">'.$next_month.'月</option>
-					</select>
-				</div>
-			</form>';
-	}
-	echo "now ",$month;
+	
+	
+  echo '<form method="post" action="./get_data.php" id="location-form">
+<div class="choice">
+	<select name="location" id="">
+    <option value="" selected>請選擇地點</option>
+		<option value="A">A</option>
+		<option value="B">B</option>
+		<option value="C">C</option>
+		<option value="D">D</option>
+		<option value="E">E</option>
+		<option value="F">F</option>
+		<option value="G">G</option>
+		<option value="H">H</option>
+		<option value="I">I</option>
+	</select>
+</div>
+</form>
+';
+  
+  
+  
+  
+  
+  echo "now ",$month;
 	echo "changed ",$changedmonth, ' ';
 	if($month == 12 && $changedmonth == 1){
 		$changedyear = $year + 1;
@@ -220,11 +189,13 @@ if (isset($_POST['mon'])){
     				echo "<td>";
 					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
     				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=12:30-13:25\">預約</a>";
-    				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
+    				echo 
+            // '<form action="../backend/get_data.php" method="POST" id="commit-form">
+    						'<input type="hidden" name="date" value=" '.$formattedDate.'">
     						<input type="hidden" name="time" value="12:30-13:25">
     						<button type="submit" onclick="submitForms()">預約</button>
-    			  		 </form>';
+    			  		 
+                 ';
 					}else{// 如果預約日期在今天之前
 						echo '<button disabled>已過期</button>';
 					}
@@ -252,11 +223,13 @@ if (isset($_POST['mon'])){
     				echo "<td>";
 					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
     				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=15:30-17:30\">預約</a>";
-    				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
+    				echo 
+            // '<form action="../backend/get_data.php" method="POST" id="commit-form">
+    						'<input type="hidden" name="date" value=" '.$formattedDate.'">
     						<input type="hidden" name="time" value="15:30-17:30">
     						<button type="submit" onclick="submitForms()">預約</button>
-    			  		 </form>';
+    			  		 
+                 ';
 					}else{// 如果預約日期在今天之前
 						echo '<button disabled>已過期</button>';
 					}
@@ -272,20 +245,92 @@ if (isset($_POST['mon'])){
 
     // 輸出 HTML 表格結束標籤
     echo "</table>";
+
+	if($month == 12 && $changedmonth == 1){
+		echo '
+			<form method="post" action="5.php" id="month-form">
+				<div class="choice">
+					<select name="mon" onchange="submitMonth()">
+						<option value="'.$prev_month.'">'.$prev_month.'月</option>
+						<option value="'.$month.'">'.$month.'月</option>
+						<option value="'.$changedmonth.'" selected>'.$next_month.'月</option>
+					</select>
+				</div>
+			</form>';
+	}elseif($month == 1 && $changedmonth == 12){
+		echo '
+			<form method="post" action="5.php" id="month-form">
+				<div class="choice">
+					<select name="mon" onchange="submitMonth()">
+						<option value="'.$changedmonth.'" selected>'.$prev_month.'月</option>
+						<option value="'.$month.'">'.$month.'月</option>
+						<option value="'.$next_month.'">'.$next_month.'月</option>
+					</select>
+				</div>
+			</form>';
+	}elseif($month > $changedmonth){
+		echo '
+			<form method="post" action="5.php" id="month-form">
+				<div class="choice">
+					<select name="mon" onchange="submitMonth()">
+						<option value="'.$changedmonth.'" selected>'.$prev_month.'月</option>
+						<option value="'.$month.'">'.$month.'月</option>
+						<option value="'.$next_month.'">'.$next_month.'月</option>
+					</select>
+				</div>
+			</form>';
+	}elseif($month < $changedmonth){
+		echo '
+		<form method="post" action="5.php" id="month-form">
+			<div class="choice">
+				<select name="mon" onchange="submitMonth()">
+					<option value="'.$prev_month.'">'.$prev_month.'月</option>
+					<option value="'.$month.'">'.$month.'月</option>
+					<option value="'.$changedmonth.'" selected>'.$next_month.'月</option>
+				</select>
+			</div>
+		</form>';
+	}else{
+		echo '
+			<form method="post" action="5.php" id="month-form">
+				<div class="choice">
+					<select name="mon" onchange="submitMonth()">
+						<option value="'.$prev_month.'">'.$prev_month.'月</option>
+						<option value="'.$month.'" selected>'.$month.'月</option>
+						<option value="'.$next_month.'">'.$next_month.'月</option>
+					</select>
+				</div>
+			</form>';
+	}
 	unset($changedmonth);
 }else{
 
 
-    echo '
-	<form method="post" action="reserve.php" id="month-form">
-		<div class="choice">
-			<select name="mon" onchange="submitMonth()">
-				<option value="'.$prev_month.'">'.$prev_month.'月</option>
-				<option value="'.$month.'" selected>'.$month.'月</option>
-				<option value="'.$next_month.'">'.$next_month.'月</option>
-			</select>
-		</div>
-	</form>';
+    
+
+
+
+  echo '<form method="post" action="./get_data.php" id="location-form">
+<div class="choice">
+	<select name="location" id="">
+    <option value="" selected>請選擇地點</option>
+		<option value="A">A</option>
+		<option value="B">B</option>
+		<option value="C">C</option>
+		<option value="D">D</option>
+		<option value="E">E</option>
+		<option value="F">F</option>
+		<option value="G">G</option>
+		<option value="H">H</option>
+		<option value="I">I</option>
+	</select>
+</div>
+';
+
+
+
+
+
 
 
     // 取得當前月份的第一天是星期幾
@@ -350,11 +395,13 @@ if (isset($_POST['mon'])){
     				echo "<td>";
 					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
     				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=12:30-13:25\">預約</a>";
-    				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
+    				echo 
+            // '<form action="../backend/get_data.php" method="POST" id="commit-form">
+    					'<input type="hidden" name="date" value=" '.$formattedDate.'">
     						<input type="hidden" name="time" value="12:30-13:25">
     						<button type="submit" onclick="submitForms()">預約</button>
-    		  			 </form>';
+    		  			 
+                 ';
 					}else{// 如果預約日期在今天之前
 						echo '<button disabled>已過期</button>';
 					}
@@ -382,11 +429,13 @@ if (isset($_POST['mon'])){
     				echo "<td>";
 					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
     				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=15:30-17:30\">預約</a>";
-    				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
+    				echo 
+            // '<form action="../backend/get_data.php" method="POST" id="commit-form">
+    						'<input type="hidden" name="date" value=" '.$formattedDate.'">
     						<input type="hidden" name="time" value="15:30-17:30">
     						<button type="submit" onclick="submitForms()">預約</button>
-    		  			 </form>';
+    		  			 
+                 ';
 					}else{// 如果預約日期在今天之前
 						echo '<button disabled>已過期</button>';
 					}
@@ -398,9 +447,20 @@ if (isset($_POST['mon'])){
     	echo "</tr>";
 
     }
-
+	echo "</form>";
     // 輸出 HTML 表格結束標籤
     echo "</table>";
+
+	echo '
+	<form method="post" action="5.php" id="month-form">
+		<div class="choice">
+			<select name="mon" onchange="submitMonth()">
+				<option value="'.$prev_month.'">'.$prev_month.'月</option>
+				<option value="'.$month.'" selected>'.$month.'月</option>
+				<option value="'.$next_month.'">'.$next_month.'月</option>
+			</select>
+		</div>
+	</form>';
 }
 
 

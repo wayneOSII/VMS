@@ -30,7 +30,7 @@ switch ($identity) {
                     echo "
                     <script>
                         alert('登入成功');
-                        window.location.replace('../index.php');
+                        window.location.replace('../index_in.php');
                     </script>
                     ";
                 } else {
@@ -76,14 +76,14 @@ switch ($identity) {
                     echo "
                     <script>
                         alert('登入成功');
-                        window.location.replace('../index.php');
+                        window.location.replace('../t_index_in.php');
                     </script>
                     ";
                 } else {
                     echo "
                     <script>
                         alert('帳號或密碼錯誤1');
-                        window.location.replace('./log_in.html');
+                        window.location.replace('../log_in.html');
                     </script>
                     ";
                 }
@@ -91,7 +91,7 @@ switch ($identity) {
                 echo "
                 <script>
                     alert('帳號或密碼錯誤2');
-                    window.location.replace('./log_in.html');
+                    window.location.replace('../log_in.html');
                 </script>
                 ";
             }
@@ -99,7 +99,7 @@ switch ($identity) {
             echo "
             <script>
                 alert('帳號或密碼錯誤');
-                window.location.replace('./log_in.html');
+                window.location.replace('../log_in.html');
             </script>
             ";
         }
@@ -122,14 +122,14 @@ switch ($identity) {
                     echo "
                     <script>
                         alert('登入成功');
-                        window.location.replace('../index.php');
+                        window.location.replace('../index_in.php');
                     </script>
                     ";
                 } else {
                     echo "
                     <script>
                         alert('帳號或密碼錯誤1');
-                        window.location.replace('./log_in.html');
+                        window.location.replace('../log_in.html');
                     </script>
                     ";
                 }
@@ -137,7 +137,7 @@ switch ($identity) {
                 echo "
                 <script>
                     alert('帳號或密碼錯誤2');
-                    window.location.replace('./log_in.html');
+                    window.location.replace('../log_in.html');
                 </script>
                 ";
             }
@@ -145,7 +145,7 @@ switch ($identity) {
             echo "
             <script>
                 alert('帳號或密碼錯誤');
-                window.location.replace('./log_in.html');
+                window.location.replace('../log_in.html');
             </script>
             ";
         }

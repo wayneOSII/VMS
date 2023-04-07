@@ -1,4 +1,41 @@
 <?php
+// // 設定時區
+// date_default_timezone_set('Asia/Taipei');
+
+// // 設定要抓取的年月份
+// $year = date('Y');
+// $month = date('m');
+
+// // 取得當月份的天數
+// $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+
+// // 建立表格開頭
+// echo "<table border='1'>";
+// echo "<tr><th>日期</th><th>星期幾</th></tr>";
+
+// // 迴圈取得每一天的日期及星期幾
+// for ($day = 1; $day <= $days_in_month; $day++) {
+//     // 取得當天的時間戳記
+//     $timestamp = strtotime("$year-$month-$day");
+    
+//     // 取得當天的日期
+//     $date = date('Y-m-d', $timestamp);
+    
+//     // 取得當天的星期幾
+//     $weekday = date('l', $timestamp);
+    
+//     // 將日期和星期幾以表格的形式呈現
+//     echo "<tr><td>$date</td><td>$weekday</td></tr>";
+// }
+
+// // 建立表格結尾
+// echo "</table>";
+?>
+
+
+
+
+<?php
 date_default_timezone_set('Asia/Taipei');
 
 $year = date("Y");
