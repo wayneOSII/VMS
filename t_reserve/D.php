@@ -1,65 +1,65 @@
 <?php
 $locate = $_POST['location'];
-// switch($locate){
-// 	case "A":
-// 		echo "
-//         <script>
-//             window.location.replace('./t_reserve/A.php');
-//         </script>
-//         ";
-// 	case "B":
-// 		echo "
-//         <script>
-//             window.location.replace('./t_reserve/B.php');
-//         </script>
-//         ";
-// 	case "C":
-// 		echo "
-//         <script>
-//             window.location.replace('./t_reserve/C.php');
-//         </script>
-//         ";
-// 	case "D":
-// 		echo "
-//         <script>
-//             window.location.replace('./t_reserve/D.php');
-//         </script>
-//         ";
-// 	case "E":
-// 		echo "
-//         <script>
-//             window.location.replace('./t_reserve/E.php');
-//         </script>
-//         ";
-// 	case "F":
-// 		echo "
-//         <script>
-//             window.location.replace('./t_reserve/F.php');
-//         </script>
-//         ";
-// 	case "G":
-// 		echo "
-//         <script>
-//             window.location.replace('./t_reserve/G.php');
-//         </script>
-//         ";
-// 	case "H":
-// 		echo "
-//         <script>
-//             window.location.replace('./t_reserve/H.php');
-//         </script>
-//         ";
-// 	case "I":
-// 		echo "
-//         <script>
-//             window.location.replace('./t_reserve/I.php');
-//         </script>
-//         ";
-// }
+switch($locate){
+	case "A":
+		echo "
+        <script>
+            window.location.replace('A.php');
+        </script>
+        ";
+	case "B":
+		echo "
+        <script>
+            window.location.replace('B.php');
+        </script>
+        ";
+	case "C":
+		echo "
+        <script>
+            window.location.replace('C.php');
+        </script>
+        ";
+	case "D":
+		echo "
+        <script>
+            window.location.replace('D.php');
+        </script>
+        ";
+	case "E":
+		echo "
+        <script>
+            window.location.replace('E.php');
+        </script>
+        ";
+	case "F":
+		echo "
+        <script>
+            window.location.replace('F.php');
+        </script>
+        ";
+	case "G":
+		echo "
+        <script>
+            window.location.replace('G.php');
+        </script>
+        ";
+	case "H":
+		echo "
+        <script>
+            window.location.replace('H.php');
+        </script>
+        ";
+	case "I":
+		echo "
+        <script>
+            window.location.replace('I.php');
+        </script>
+        ";
+}
 ?>
 <?php
 session_start();
-require_once("./backend/connect_db.php");
+require_once("../backend/connect_db.php");
 $sql = 'SELECT reserve.s_no,reserve.r_date,reserve.r_period,reserve.r_location,reserve.create_at,reserve.modified_at,student.s_id,student.s_name FROM reserve,student WHERE reserve.s_no=student.s_no';
 $stmt = $db_link->prepare($sql);
 $stmt->execute();
@@ -162,14 +162,14 @@ if (isset($_POST['mon'])){
 	echo '<br>',$changedmonth;
 	
 	
-  echo '<form method="post" action="t_reserve.php" id="location-form">
+  echo '<form method="post" action="D.php" id="location-form">
 <div class="choice">
 	<select name="location" id="" onchange="submitlocation()">
     	
-		<option value="A" selected>A資訊大樓</option>
+		<option value="A">A資訊大樓</option>
 		<option value="B">B中正大樓</option>
 		<option value="C">C昌明樓</option>
-		<option value="D">D翰英樓</option>
+		<option value="D" selected>D翰英樓</option>
 		<option value="E">E弘業樓</option>
 		<option value="F">F中商大樓</option>
 		<option value="G">G</option>
@@ -261,7 +261,7 @@ if (isset($_POST['mon'])){
     				//判斷日期是否已有預約 填入資料
 					$isReserved = false;
         			foreach ($datas as $reservation) {
-            		if ($formattedDate == $reservation['r_date'] && $reservation['r_period'] == "12:30-13:25" && $reservation['r_location'] == "A") {
+            		if ($formattedDate == $reservation['r_date'] && $reservation['r_period'] == "12:30-13:25" && $reservation['r_location'] == "D") {
                 		$isReserved = true;
 						$reservation_sid = $reservation['s_id'];
 						$reservation_sname = $reservation['s_name'];
@@ -299,7 +299,7 @@ if (isset($_POST['mon'])){
     				//判斷日期是否已有預約 填入資料
 					$isReserved = false;
         			foreach ($datas as $reservation) {
-            		if ($formattedDate == $reservation['r_date'] && $reservation['r_period'] == "15:30-17:30" && $reservation['r_location'] == "A") {
+            		if ($formattedDate == $reservation['r_date'] && $reservation['r_period'] == "15:30-17:30" && $reservation['r_location'] == "D") {
                 		$isReserved = true;
 						$reservation_sid = $reservation['s_id'];
 						$reservation_sname = $reservation['s_name'];
@@ -328,7 +328,7 @@ if (isset($_POST['mon'])){
 
 	if($month == 12 && $changedmonth == 1){
 		echo '
-			<form method="post" action="t_reserve.php" id="month-form">
+			<form method="post" action="D.php" id="month-form">
 				<div class="choice">
 					<select name="mon" onchange="submitMonth()">
 						<option value="'.$prev_month.'">'.$prev_month.'月</option>
@@ -339,7 +339,7 @@ if (isset($_POST['mon'])){
 			</form>';
 	}elseif($month == 1 && $changedmonth == 12){
 		echo '
-			<form method="post" action="t_reserve.php" id="month-form">
+			<form method="post" action="D.php" id="month-form">
 				<div class="choice">
 					<select name="mon" onchange="submitMonth()">
 						<option value="'.$changedmonth.'" selected>'.$prev_month.'月</option>
@@ -350,7 +350,7 @@ if (isset($_POST['mon'])){
 			</form>';
 	}elseif($month > $changedmonth){
 		echo '
-			<form method="post" action="t_reserve.php" id="month-form">
+			<form method="post" action="D.php" id="month-form">
 				<div class="choice">
 					<select name="mon" onchange="submitMonth()">
 						<option value="'.$changedmonth.'" selected>'.$prev_month.'月</option>
@@ -361,7 +361,7 @@ if (isset($_POST['mon'])){
 			</form>';
 	}elseif($month < $changedmonth){
 		echo '
-		<form method="post" action="t_reserve.php" id="month-form">
+		<form method="post" action="D.php" id="month-form">
 			<div class="choice">
 				<select name="mon" onchange="submitMonth()">
 					<option value="'.$prev_month.'">'.$prev_month.'月</option>
@@ -372,7 +372,7 @@ if (isset($_POST['mon'])){
 		</form>';
 	}else{
 		echo '
-			<form method="post" action="t_reserve.php" id="month-form">
+			<form method="post" action="D.php" id="month-form">
 				<div class="choice">
 					<select name="mon" onchange="submitMonth()">
 						<option value="'.$prev_month.'">'.$prev_month.'月</option>
@@ -390,14 +390,14 @@ if (isset($_POST['mon'])){
 
 
 
-  echo '<form method="post" action="t_reserve.php" id="location-form">
+  echo '<form method="post" action="D.php" id="location-form">
 <div class="choice">
 	<select name="location" id="" onchange="submitlocation()">
     	
-		<option value="A" selected>A資訊大樓</option>
+		<option value="A">A資訊大樓</option>
 		<option value="B">B中正大樓</option>
 		<option value="C">C昌明樓</option>
-		<option value="D">D翰英樓</option>
+		<option value="D" selected>D翰英樓</option>
 		<option value="E">E弘業樓</option>
 		<option value="F">F中商大樓</option>
 		<option value="G">G</option>
@@ -474,7 +474,7 @@ if (isset($_POST['mon'])){
 					//判斷日期是否已有預約 填入資料
 					$isReserved = false;
         			foreach ($datas as $reservation) {
-            		if ($formattedDate == $reservation['r_date'] && $reservation['r_period'] == "12:30-13:25" && $reservation['r_location'] == "A") {
+            		if ($formattedDate == $reservation['r_date'] && $reservation['r_period'] == "12:30-13:25" && $reservation['r_location'] == "D") {
                 		$isReserved = true;
 						$reservation_sid = $reservation['s_id'];
 						$reservation_sname = $reservation['s_name'];
@@ -512,7 +512,7 @@ if (isset($_POST['mon'])){
 					//判斷日期是否已有預約 填入資料
 					$isReserved = false;
         			foreach ($datas as $reservation) {
-            		if ($formattedDate == $reservation['r_date'] && $reservation['r_period'] == "15:30-17:30" && $reservation['r_location'] == "A") {
+            		if ($formattedDate == $reservation['r_date'] && $reservation['r_period'] == "15:30-17:30" && $reservation['r_location'] == "D") {
                 		$isReserved = true;
 						$reservation_sid = $reservation['s_id'];
 						$reservation_sname = $reservation['s_name'];
@@ -539,7 +539,7 @@ if (isset($_POST['mon'])){
     echo "</table>";
 
 	echo '
-	<form method="post" action="t_reserve.php" id="month-form">
+	<form method="post" action="D.php" id="month-form">
 		<div class="choice">
 			<select name="mon" onchange="submitMonth()">
 				<option value="'.$prev_month.'">'.$prev_month.'月</option>

@@ -93,13 +93,13 @@
             <!-- <a class="nav-link" href="#" data-target="attend.html" id="attend_btn">值勤簽到</a> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">學生歷史紀錄查尋</a>
+            <a class="nav-link" href="#">學生資料查尋</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">出席狀況</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./t_reserve.php">志工時段預選狀況</a>
+            <a class="nav-link" href="./t_reserve/A.php">志工時段預選狀況</a>
           </li>
           <li class="nav-item">
             <!-- <a class="nav-link" href="#">缺曠查詢</a> -->

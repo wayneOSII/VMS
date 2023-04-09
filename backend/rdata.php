@@ -16,32 +16,32 @@ echo $period,"<br>";
 echo $location,"<br>";
 
 
-// $reserveData = [$s_no,$date ,$period, $location,$time,$edit_time];
-// $sql = 'INSERT INTO reserve(s_no ,r_date,r_period,r_location,create_at,modified_at) VALUES (?,?,?,?,?,?)';
-// $sth = $db_link->prepare($sql);
-// try{
-//     if($sth->execute($reserveData)) {
-//         echo "
-//         <script>
-//             alert('預約成功');
-//             window.location.replace('../reserve.php');
-//         </script>
-//         ";
-//     }else{
-//         echo"
-//         <script>
-//             alert('錯誤1');
-//             window.location.replace('../reserve.php');
-//         </script>
-//         ";
-//     }
-// } catch(PDOException $e) {
-//     echo $e;
-//     // echo "
-//     //     <script>
-//     //         alert('錯誤2');
-//     //         window.location.replace('../reserve.php');
-//     //     </script>
-//     //     ";
-// }
+$reserveData = [$s_no,$date,$period,$location,$time,$edit_time];
+$sql = 'INSERT INTO reserve(s_no,r_date,r_period,r_location,create_at,modified_at) VALUES (?,?,?,?,?,?)';
+$sth = $db_link->prepare($sql);
+try{
+    if($sth->execute($reserveData)) {
+        echo "
+        <script>
+            alert('預約成功');
+            window.location.replace('../reserve.php');
+        </script>
+        ";
+    }else{
+        echo"
+        <script>
+            alert('錯誤1');
+            window.location.replace('../reserve.php');
+        </script>
+        ";
+    }
+} catch(PDOException $e) {
+    echo $e;
+    // echo "
+    //     <script>
+    //         alert('錯誤2');
+    //         window.location.replace('../reserve.php');
+    //     </script>
+    //     ";
+}
 ?>

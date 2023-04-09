@@ -221,7 +221,7 @@ if (isset($_POST['mon'])){
 					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
     				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=12:30-13:25\">預約</a>";
     				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
+    						<input type="hidden" name="date" value="'.$formattedDate.'">
     						<input type="hidden" name="time" value="12:30-13:25">
     						<button type="submit" onclick="submitForms()">預約</button>
     			  		 </form>';
@@ -253,7 +253,7 @@ if (isset($_POST['mon'])){
 					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
     				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=15:30-17:30\">預約</a>";
     				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
+    						<input type="hidden" name="date" value="'.$formattedDate.'">
     						<input type="hidden" name="time" value="15:30-17:30">
     						<button type="submit" onclick="submitForms()">預約</button>
     			  		 </form>';
@@ -351,7 +351,7 @@ if (isset($_POST['mon'])){
 					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
     				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=12:30-13:25\">預約</a>";
     				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
+    						<input type="hidden" name="date" value="'.$formattedDate.'">
     						<input type="hidden" name="time" value="12:30-13:25">
     						<button type="submit" onclick="submitForms()">預約</button>
     		  			 </form>';
@@ -383,7 +383,7 @@ if (isset($_POST['mon'])){
 					if ($formattedDateObj >= $today_date) { // 如果預約日期在今天之後
     				// echo "<a href=\"./backend/get_data.php?date=$formattedData&time=15:30-17:30\">預約</a>";
     				echo '<form action="./backend/get_data.php" method="POST" id="commit-form">
-    						<input type="hidden" name="date" value=" '.$formattedDate.'">
+    						<input type="hidden" name="date" value="'.$formattedDate.'">
     						<input type="hidden" name="time" value="15:30-17:30">
     						<button type="submit" onclick="submitForms()">預約</button>
     		  			 </form>';
